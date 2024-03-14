@@ -1,40 +1,33 @@
 import { useForm } from "react-hook-form";
-// import { useTasks } from "../context/TaskContext";
+import { useTasks } from "../Context/TaskContext.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-
-
 export const TasksFormPage = () => {
-
-
   const navigate = useNavigate();
   const { register, handleSubmit, setValue } = useForm();
-  // const { createTasks, getTask, updateTask } = useTasks();
+  const { createTasks, getTask, updateTask } = useTasks();
   const params = useParams();
 
   const onSubmit = handleSubmit((data) => {
     if (params.id) {
-      // updateTask(params.id, dataValid);
+      updateTask(params.id, data);
     } else {
-      // createTasks(dataValid);
+      createTasks(data);
     }
-    console.log("creado")
     navigate("/tasks");
   });
 
-  // useEffect(() => {
-  //   async function loadTask() {
-  //     if (params.id) {
-  //       const taskId = await getTask(params.id);
-  //       setValue("title", taskId.title);
-  //       setValue("description", taskId.description);
-  //     }
-  //   }
-  //   loadTask();
-  // }, []);
-
-
+useEffect(() => {
+  async function loadTask() {
+    if (params.id) {
+      const taskId = await getTask(params.id);
+      setValue("title", taskId.title);
+      setValue("description", taskId.description);
+    }
+  }
+  loadTask();
+}, []);
 
 
 

@@ -1,4 +1,6 @@
-import React from "react";
+import { useTasks } from "../context/TaskContext.jsx";
+import { Link } from "react-router-dom";
+
 
 export const TaskCard = ({ task }) => {
   const { deleteTask } = useTasks();
