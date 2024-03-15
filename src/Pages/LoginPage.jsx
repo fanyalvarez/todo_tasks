@@ -42,7 +42,7 @@ export const LoginPage = () => {
 
           <input
             type="password"
-            {...register("hashed_password ", { required: true })}
+            {...register("password", { required: true })}
             className=" bg-zinc-700 text-white text-lg px-4 py-2 rounded-md mt-2"
             placeholder="Password"
           />
