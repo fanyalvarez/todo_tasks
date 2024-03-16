@@ -1,11 +1,11 @@
 import axios from "axios";
-const token = localStorage.getItem("token")
 
 export const getTasksRequest = async () => axios.get("https://todonotes.onrender.com/read/note", {
     headers: {
-        "Authorization": `Bearer ${token}`
+        "authorization":`Bearer ${localStorage.getItem("token")}`
     }
 });
+
 export const getTaskRequest = async (note_id) => axios.get(`https://todonotes.onrender.com/note/${note_id}`);
 export const updateTaskRequest = async (note_id, task) => axios.put(`https://todonotes.onrender.com/note/update/${note_id}`, task);
 export const deleteTaskRequest = async (id) => axios.delete(`https://todonotes.onrender.com/delete/note/${id}`);

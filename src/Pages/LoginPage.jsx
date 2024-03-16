@@ -12,16 +12,16 @@ export const LoginPage = () => {
   const { signin, isAuthenticated, token } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/tasks")
-      localStorage.setItem("token", token.data.access_token);
-    }
-  }, [isAuthenticated]);
-
   const onSubmit = handleSubmit(async (user) => {
     const resp = await signin(user);
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      localStorage.setItem("token", token);
+      navigate("/tasks");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="flex h-full items-center justify-center ">

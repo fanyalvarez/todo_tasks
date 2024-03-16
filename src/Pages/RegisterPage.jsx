@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { registerRequest } from "../api/user";
 import { useAuth } from "../Context/UserContext.jsx";
 
 export const RegisterPage = () => {

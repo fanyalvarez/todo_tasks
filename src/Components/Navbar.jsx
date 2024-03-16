@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/UserContext";
 
 import React from "react";
 
 export const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const setLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <nav className="bg-sky-950 mb-3 flex justify-between py-5 px-10 rounded-md text-black">
@@ -25,8 +31,8 @@ export const Navbar = () => {
             <li>
               <Link
                 to="/"
-                onClick={() => logout()}
-                className="text-rose-900 px-4 py-2 rounded hover:bg-rose-800 hover:text-rose-100">
+                onClick={() => setLogout()}
+                className="text-rose-200 px-4 py-2 rounded hover:bg-rose-800 hover:text-rose-100">
                 Logout
               </Link>
             </li>
