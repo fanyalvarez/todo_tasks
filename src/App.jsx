@@ -6,6 +6,8 @@ import { HomePage } from "./Pages/HomePage";
 import { TasksFormPage } from "./Pages/TasksFormPage";
 import { AuthProvider } from "./Context/UserContext";
 import { TaskProvider } from "./Context/TaskContext";
+import { TaksPage } from "./Pages/TaksPage";
+
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
 
-              <Route path="/tasks" element={<HomePage />} />
+              <Route path="/tasks" element={<TaksPage />} />
               <Route path="/add-tasks" element={<TasksFormPage />} />
               <Route path="/tasks/:id" element={<TasksFormPage />} />
             </Routes>

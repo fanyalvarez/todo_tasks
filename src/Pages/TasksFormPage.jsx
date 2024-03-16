@@ -8,28 +8,27 @@ export const TasksFormPage = () => {
   const { register, handleSubmit, setValue } = useForm();
   const { createTasks, getTask, updateTask } = useTasks();
   const params = useParams();
-
+  const userId = localStorage.getItem("user_id");
+  
   const onSubmit = handleSubmit((data) => {
     if (params.id) {
       updateTask(params.id, data);
     } else {
-      createTasks(data);
+      createTasks(data, userId);
     }
     navigate("/tasks");
   });
 
-useEffect(() => {
-  async function loadTask() {
-    if (params.id) {
-      const taskId = await getTask(params.id);
-      setValue("title", taskId.title);
-      setValue("description", taskId.description);
+  useEffect(() => {
+    async function loadTask() {
+      if (params.id) {
+        const taskId = await getTask(params.id);
+        setValue("title", taskId.title);
+        setValue("description", taskId.description);
+      }
     }
-  }
-  loadTask();
-}, []);
-
-
+    loadTask();
+  }, []);
 
   return (
     <div className="flex h-full items-center justify-center ">
@@ -59,5 +58,5 @@ useEffect(() => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};

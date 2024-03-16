@@ -1,41 +1,55 @@
 import { Link } from "react-router-dom";
-// import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../Context/UserContext";
 
-import React from 'react'
+import React from "react";
 
 export const Navbar = () => {
-    return (
-      <nav className="bg-zinc-700 mb-5 flex justify-between py-5 px-10 rounded-lg">
-        <h1 className="text-2xl font-bold">
-          {/* <Link to={isAuthenticated ? "/tasks" : "/"}>Task Manager</Link> */}
-          <Link to={"/"}>Task Manager</Link>
-        </h1>
-        <ul className="flex gap-x-5">
-          <li>
-            <Link to="/login" className="bg-rose-900 px-4 py-2 rounded">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/register" className="bg-rose-900 px-4 py-2 rounded">
-              Register
-            </Link>
-          </li>
-        </ul>
-        {/* <ul className="flex gap-x-5">
-          {isAuthenticated ? (
-            <>
-              <li>Welcome {user.username}</li>
-              <li><Link to="/add-tasks">Add Task</Link></li>
-              <li><Link to="/" onClick={() => logout()} className="bg-rose-900 px-4 py-2 rounded">Logout</Link></li>
-            </>
-          ) : (
-            <>
-              <li><Link to="/login" className="bg-rose-900 px-4 py-2 rounded">Login</Link></li>
-              <li><Link to="/register" className="bg-rose-900 px-4 py-2 rounded">Register</Link></li>
-            </>
-          )}
-        </ul> */}
-      </nav>
-  )
-}
+  const { isAuthenticated, logout } = useAuth();
+
+  return (
+    <nav className="bg-blue-300 mb-3 flex justify-between py-5 px-10 rounded-md text-black">
+      <h1 className="text-2xl font-bold">
+        <Link to={isAuthenticated ? "/tasks" : "/"}>Task Manager</Link>
+      </h1>
+      <ul className="flex gap-x-5">
+        {isAuthenticated ? (
+          <>
+            <li>Welcome</li>
+            <li className="ml-7">
+              <Link
+                to="/add-tasks"
+                className="bg-indigo-700 px-4 py-2 rounded text-white hover:bg-indigo-300 hover:text-indigo-700">
+                Add Task
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                onClick={() => logout()}
+                className="text-rose-900 px-4 py-2 rounded hover:bg-rose-800 hover:text-rose-100">
+                Logout
+              </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link
+                to="/login"
+                className="bg-indigo-700 px-4 py-2 rounded  text-white  hover:bg-indigo-300 hover:text-indigo-950">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/register"
+                className="bg-indigo-700 px-4 py-2 rounded  text-white  hover:bg-indigo-300 hover:text-indigo-950">
+                Register
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
+  );
+};

@@ -11,18 +11,18 @@ export const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { signin, isAuthenticated, user } = useAuth();
+  const { signin, isAuthenticated, token } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  // navigate("/tasks")
-  // localStorage.setItem('Item', JSON.stringify(user.data.token))
-  // };
-  // }, [isAuthenticated]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/tasks")
+      localStorage.setItem("token", token.data.access_token);
+      localStorage.setItem("user_id", 17);
+    }
+  }, [isAuthenticated]);
 
   const onSubmit = handleSubmit(async (user) => {
-    console.log(user, ":user");
     const resp = await signin(user);
   });
 
@@ -46,7 +46,7 @@ export const LoginPage = () => {
             className=" bg-zinc-700 text-white text-lg px-4 py-2 rounded-md mt-2"
             placeholder="Password"
           />
-          {errors.hashed_password && (
+          {errors.password && (
             <p className="text-red-500">Password is required</p>
           )}
           <button
