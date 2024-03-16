@@ -66,14 +66,14 @@ export const RegisterPage = () => {
 
             <button
               type="submit"
-              className="bg-sky-700 px-4 py-2 rounded my-3 w-28">
+              className="bg-indigo-700 px-4 py-2 rounded text-white hover:bg-indigo-300 hover:text-indigo-700 w-28">
               Send
             </button>
           </form>
 
           <p className="flex gap-x-2 justify-between my-2">
             Already have an account?
-            <Link to="/login" className="text-green-600">
+            <Link to="/login" className="text-indigo-300">
               Login
             </Link>
           </p>

@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form";
-// import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { loginRequest } from "../api/user";
 import { useAuth } from "../Context/UserContext";
 
 export const LoginPage = () => {
@@ -18,7 +16,6 @@ export const LoginPage = () => {
     if (isAuthenticated) {
       navigate("/tasks")
       localStorage.setItem("token", token.data.access_token);
-      localStorage.setItem("user_id", 17);
     }
   }, [isAuthenticated]);
 
@@ -51,13 +48,13 @@ export const LoginPage = () => {
           )}
           <button
             type="submit"
-            className="bg-sky-700 px-4 py-2 rounded my-3 w-28">
+            className="bg-indigo-700 px-4 py-2 rounded text-white hover:bg-indigo-300 hover:text-indigo-700 w-28">
             Send
           </button>
         </form>
         <p className="flex gap-x-2 justify-between my-2">
           Don't have an account?
-          <Link to="/register" className="text-green-600">
+          <Link to="/register" className="text-indigo-300">
             Sign up
           </Link>
         </p>

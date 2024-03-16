@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTasks } from "../Context/TaskContext.jsx";
-import {TaskCard} from "../Components/TaskCard";
-
+import { TaskCard } from "../Components/TaskCard";
 
 export const TaksPage = () => {
   const { getTasks, tasks } = useTasks();
+  // const [getToken, setGetToken] = useState(null);
 
   useEffect(() => {
     getTasks();
@@ -17,6 +17,7 @@ export const TaksPage = () => {
       </div>
     );
   }
+  // console.log(tasks)
 
   return (
     <div>

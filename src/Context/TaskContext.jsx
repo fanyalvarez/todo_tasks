@@ -22,6 +22,7 @@ export function TaskProvider({ children }) {
 
   const getTasks = async () => {
     const resp = await getTasksRequest();
+    console.log(resp);
     try {
       setTasks(resp.data);
     } catch (error) {
@@ -29,15 +30,14 @@ export function TaskProvider({ children }) {
     }
   };
 
-  const createTasks = async (tasks, user_id) => {
-    const resp = await createTaskRequest(tasks, user_id);
+  const createTasks = async (tasks) => {
+    const resp = await createTaskRequest(tasks);
   };
 
   const deleteTask = async (id) => {
     try {
       const res = await deleteTaskRequest(id);
-      if (res.status === 200)
-        setTasks(tasks.filter((task) => task.id !== id));
+      if (res.status === 200) setTasks(tasks.filter((task) => task.id !== id));
     } catch (error) {
       console.error(error);
     }

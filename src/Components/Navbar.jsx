@@ -7,7 +7,7 @@ export const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
 
   return (
-    <nav className="bg-blue-300 mb-3 flex justify-between py-5 px-10 rounded-md text-black">
+    <nav className="bg-sky-950 mb-3 flex justify-between py-5 px-10 rounded-lg">
       <h1 className="text-2xl font-bold">
         <Link to={isAuthenticated ? "/tasks" : "/"}>Task Manager</Link>
       </h1>
@@ -26,7 +26,7 @@ export const Navbar = () => {
               <Link
                 to="/"
                 onClick={() => logout()}
-                className="text-rose-900 px-4 py-2 rounded hover:bg-rose-800 hover:text-rose-100">
+                className="text-rose-200 px-4 py-2 rounded hover:bg-rose-800 hover:text-rose-100">
                 Logout
               </Link>
             </li>
