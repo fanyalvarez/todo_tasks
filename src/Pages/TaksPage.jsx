@@ -10,6 +10,7 @@ export const TaksPage = () => {
     getTasks();
   }, []);
 
+  console.log(tasks)
   if (tasks.length === 0) {
     return (
       <div>

@@ -2,14 +2,17 @@ import { useForm } from "react-hook-form";
 import { useTasks } from "../Context/TaskContext.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 
 export const TasksFormPage = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, setValue } = useForm();
   const { createTasks, getTask, updateTask } = useTasks();
   const params = useParams();
-  const userId = localStorage.getItem("user_id");
-  
+
+  const decoded = jwtDecode(localStorage.getItem("token"));
+  const userId = decoded.id;
+
   const onSubmit = handleSubmit((data) => {
     if (params.id) {
       updateTask(params.id, data);
@@ -32,7 +35,7 @@ export const TasksFormPage = () => {
 
   return (
     <div className="flex h-full items-center justify-center ">
-      <div className="w-full max-w-lg bg-green-950 rounded-md p-10 m-2">
+      <div className="w-full max-w-lg bg-sky-950 rounded-md p-10 m-2">
         <h1 className="text-white text-center text-3xl font-bold mb-5">
           Form Task
         </h1>
@@ -54,7 +57,7 @@ export const TasksFormPage = () => {
             placeholder="description"
             {...register("description")}></textarea>
 
-          <button className="bg-sky-700 px-4 py-2 rounded">Save</button>
+          <button className="bg-indigo-500 px-4 py-2 rounded hover:bg-indigo-800 hover:text-indigo-200">Save</button>
         </form>
       </div>
     </div>

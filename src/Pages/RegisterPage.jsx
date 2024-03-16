@@ -73,7 +73,7 @@ export const RegisterPage = () => {
 
           <p className="flex gap-x-2 justify-between my-2">
             Already have an account?
-            <Link to="/login" className="text-green-600">
+            <Link to="/login" className="text-sky-400">
               Login
             </Link>
           </p>

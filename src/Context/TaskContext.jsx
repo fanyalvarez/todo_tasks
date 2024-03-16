@@ -20,24 +20,26 @@ export const useTasks = () => {
 export function TaskProvider({ children }) {
   const [tasks, setTasks] = useState([]);
 
-  const getTasks = async () => {
-    const resp = await getTasksRequest();
-    try {
-      setTasks(resp.data);
-    } catch (error) {
-      console.error(error);
-    }
+  const getTasks = () => {
+    setTimeout(async () => {
+      const resp = await getTasksRequest();
+      console.log(resp);
+      try {
+        setTasks(resp.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }, 2000);
   };
 
-  const createTasks = async (tasks, user_id) => {
-    const resp = await createTaskRequest(tasks, user_id);
+  const createTasks = async (tasks) => {
+    const resp = await createTaskRequest(tasks);
   };
 
   const deleteTask = async (id) => {
     try {
       const res = await deleteTaskRequest(id);
-      if (res.status === 200)
-        setTasks(tasks.filter((task) => task.id !== id));
+      if (res.status === 200) setTasks(tasks.filter((task) => task.id !== id));
     } catch (error) {
       console.error(error);
     }
